@@ -3,6 +3,8 @@ const { router } = require('./routes/postRoutes');
 const morgan = require('morgan');
 const dotenv = require('dotenv');
 const mongoose = require('mongoose');
+const bodyParser = require('body-parser');
+const expressValidator = require('express-validator');
 
 //Configurations
 dotenv.config();
@@ -14,11 +16,13 @@ mongoose.connect(process.env.MONGO_URI,{useNewUrlParser: true,useUnifiedTopology
 .then(()=>{
     console.log("Connected to Database Successfully");
 },(err)=>{
-    console.log(`Error - ${err.message}`);
+    console.log(`Error - ${err.message}`);  
 });
 
 //Middleware
 app.use(morgan("dev"));
+app.use(bodyParser.json());
+app.use(expressValidator());
 app.use('/', router);
 
 
