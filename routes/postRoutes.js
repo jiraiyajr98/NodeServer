@@ -3,16 +3,16 @@ const  postvalidator  = require('../utils/postValidator');
 
 const express = require('express');
 
-const router = express.Router();
+const postRouter = express.Router();
 
 
-router.get('/',controller.getPostRoute);
+postRouter.get('/',controller.getPostRoute);
 
-router.post('/post',postvalidator.postValidatorCallback,
+postRouter.post('/post',postvalidator.postValidatorCallback,
   controller.postPostRoute);
 
 module.exports = {
 
-    router 
+  postRouter 
 
 };

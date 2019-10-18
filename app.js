@@ -1,5 +1,6 @@
 const express = require('express');
-const { router } = require('./routes/postRoutes');
+const { postRouter } = require('./routes/postRoutes');
+const { authRouter } = require('./routes/authRoutes');
 const morgan = require('morgan');
 const dotenv = require('dotenv');
 const mongoose = require('mongoose');
@@ -23,7 +24,8 @@ mongoose.connect(process.env.MONGO_URI,{useNewUrlParser: true,useUnifiedTopology
 app.use(morgan("dev"));
 app.use(bodyParser.json());
 app.use(expressValidator());
-app.use('/', router);
+app.use('/',authRouter);
+app.use('/', postRouter);
 
 
 app.listen(PORT,()=>{console.log(`Running Service at ${PORT}`)});
