@@ -48,6 +48,12 @@ userSchema.virtual('password')
 
 userSchema.methods = {
 
+    authenticate: function(password){
+
+        return (this.encryptPassword(password) === this.hashed_password)
+    
+    },
+
     encryptPassword: function(password)
     {
         return crypto.createHmac('sha256', this.salt)
