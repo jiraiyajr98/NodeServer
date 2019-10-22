@@ -1,4 +1,6 @@
+const _ = require('lodash');
 const User = require('../models/User');
+
 
 exports.userId = (req,res,next,id) =>{
 
@@ -46,5 +48,26 @@ exports.getUser = (req,res) =>{
     req.profile.salt = undefined;
     req.profile.hashed_password = undefined;
     res.json(req.profile);
+
+};
+
+exports.updateUser = (req,res) =>{
+
+    let user = req.profile;
+    user = _.extend(user, req.body);
+    user.updated = Date.now();
+    user.save((err)=>{
+
+        if(err)
+            return res.status.json({error:'Error | No Authorization'});
+        else
+        {
+            user.salt = undefined;
+            user.hashed_password = undefined;
+
+            return res.json({user}); 
+        }
+
+    });
 
 };
