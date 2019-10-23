@@ -14,6 +14,18 @@ const postSchema = new mongoose.Schema({
         required: 'Body is Required',
         minlength: 10,
         maxlength: 100
+    },
+    photo:{
+        data: Buffer,
+        contentType: String
+    },
+    psotedBy:{
+        type: mongoose.Schema.ObjectId,
+        ref:'User'
+    },
+    created:{
+        type: Date,
+        default: Date.now
     }
 
 });

@@ -71,3 +71,22 @@ exports.updateUser = (req,res) =>{
     });
 
 };
+
+exports.deleteUser = (req,res) =>{
+
+    const user = req.profile;
+
+    user.remove((err)=>{
+
+        if(err)
+        {
+            res.status(403).json({error:'Error removing User'});
+        }
+        else
+        {
+            res.json({status:'User Deleted Successfully'});
+        }
+
+    });
+
+};
