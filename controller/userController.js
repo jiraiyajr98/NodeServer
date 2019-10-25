@@ -20,6 +20,9 @@ exports.hasAuthorization = (req,res,next) => {
 
     const authorized = 
     req.auth && req.profile && req.profile._id === req.auth._id;
+
+    console.lof("Has Auth P "+req.profile._id);
+    console.lof("Has Auth A "+req.req.auth._id);
     
     if(!authorized){
 
