@@ -8,6 +8,7 @@ const mongoose = require('mongoose');
 const bodyParser = require('body-parser');
 const expressValidator = require('express-validator');
 const cookieParser = require('cookie-parser')
+const cors = require('cors')
 
 //Configurations
 dotenv.config();
@@ -27,6 +28,7 @@ app.use(morgan("dev"));
 app.use(bodyParser.json());
 app.use(cookieParser());
 app.use(expressValidator());
+app.use(cors())
 app.use('/',authRouter);
 app.use('/', postRouter);
 app.use('/',userRouter);
